@@ -3,7 +3,7 @@
 
 # Acrylic packager
 
-This is --all
+This is a simple command-line tool that packages and unpackages `.acr` (Acrylic) packages.
 
 Acrylic packages are actually just JSON files. In the JSON is an object, with the keys being the file paths and the values being the file contents.
 
