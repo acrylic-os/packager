@@ -1,5 +1,5 @@
 
-![](https://img.shields.io/badge/stable-0.1.0-f65) ![](https://img.shields.io/github/license/acrylic-os/packager)
+![](https://img.shields.io/badge/stable-0.1.1-f65) ![](https://img.shields.io/github/license/acrylic-os/packager)
 
 # Acrylic packager
 
@@ -50,6 +50,11 @@ Once again, you can also specify an output filename:
 To get the help menu:
 ```
 ./acr -h
+```
+
+To get version info:
+```
+./acr -v
 ```
 
 
