@@ -23,8 +23,8 @@ namespace fs = std::filesystem;
 
 // constants
 
-const string version = "0.1.0";
-const string versionDate = "13 Feb 2025";
+const string version = "0.1.1";
+const string versionDate = "14 Feb 2025";
 
 
 // main
@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
     
     // check option argument
     if(argc < 2) {
-        cout << "You need to provide the [option] argument. Use \"acr -h\" to get help.";
+        cout << "You need to provide an option argument. Use \"acr -h\" to get help.";
         return 1;
     }
     if(argv[1][0] != '-') {
@@ -48,20 +48,30 @@ int main(int argc, char* argv[]) {
         case 'h': {
             cout << "\n"
                     "  \033[1mAcrylic packager help\033[0m\n"
-                    "    Version " << version << " (" << versionDate << ")\n"
-                    "    MIT license, (c) anpang54\n"
                     "\n"
                     "  \033[1m-h\033[0m\n"
                     "    Get help options\n"
                     "    acr -h\n"
+                    "  \033[1m-v\033[0m\n"
+                    "    Get the version of the Acrylic packager\n"
+                    "    acr -v\n"
                     "  \033[1m-p\033[0m\n"
                     "    Package a folder into an .acr package\n"
                     "    acr -p [folder] [output package]\n"
                     "  \033[1m-e\033[0m\n"
                     "    Extract an .acr package into a folder\n"
                     "    acr -e [package] [output folder]\n"
-                    "  Note that the [output] arguments are optional.\n"
-                    "\n";
+                    "  Note that the [output] arguments are optional.\n";
+            break;
+        }
+        
+        // -v - version
+        case 'v': {
+            cout << "\n"
+                    "  \033[1mAcrylic packager\033[0m\n"
+                    "  Version " << version << " (" << versionDate << ")\n"
+                    "  https://github.com/acrylic-os/packager\n"
+                    "  MIT license, (c) anpang54\n";
             break;
         }
         
@@ -101,6 +111,7 @@ int main(int argc, char* argv[]) {
             file << jsonized.dump();
             file.close();
             
+            cout << "Succesfully packaged folder \"" << argv[2] << "\" into package \"" << output << "\".";
             break;
         
         }
@@ -146,7 +157,8 @@ int main(int argc, char* argv[]) {
                 string fullPath = "";
                 for(string& item: splitted) {
                     fullPath.append(item);
-                    fs::create_directory(output + "/" + fullPath);
+                    if(!fs::exists(output + "/" + fullPath)) {                        fs::create_directory(output + "/" + fullPath);
+                    }
                     fullPath.append("/");
                 }
 
@@ -156,6 +168,8 @@ int main(int argc, char* argv[]) {
                 file.close();
             }
             
+            cout << "Succesfully extracted page \"" << argv[2] << "\" into folder \"" << output << "\".";
+           
             break;
             
         }
