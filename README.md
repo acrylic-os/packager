@@ -3,11 +3,20 @@
 
 # Acrylic packager
 
-This is a simple command-line tool that packages and unpackages `.acr` (Acrylic) packages.
-
-Acrylic packages are actually just JSON files. In the JSON is an object, with the keys being the file paths and the values being the file contents.
+This is a simple command-line tool that packages and unpackages `.acr` (Acrylic) packages. They are actually just JSON files which contain a object with the keys being the file paths and the values being the file contents.
 
 For writing and reading JSON, this tool uses [nlohmann/json](https://github.com/nlohmann/json), which is put in `include/json.hpp`.
+
+> [!NOTE]
+> Acrylic itself currently doesn't have support for unpacking `.acr` packages. However, it'll be implemented very soon.
+
+## Why?
+
+Acrylic extensions that actually do something need to have multiple files.
+
+The standard for bundling several files into 1 file, for Unix at least, is `.tar`. However, it has a lot of limitations (filenames can only be up to 100 characters, support in Windows is kinda bad, etc.)
+
+Additionally, it would be easier to identify Acrylic extension files if they had their own extension, `.acr`, instead of being mixed in with all the other Unix compressed files.
 
 ## Compiling
 
